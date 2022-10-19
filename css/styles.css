@@ -121,6 +121,8 @@ header {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navigation .link {
@@ -139,10 +141,12 @@ header {
 
 .envelope-icon {
   margin-right: 10px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .phone-icon {
   margin-right: 10px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navigation a:hover,
@@ -160,11 +164,15 @@ header {
 }
 
 .active .link {
+  position: relative;
   color: var(--accent-color);
 }
 
-.active:after {
+.active .link::after {
+  position: absolute;
   display: block;
+  bottom: 0;
+  left: 0;
   content: "";
   width: 100%;
   height: 4px;
@@ -173,6 +181,7 @@ header {
 }
 
 /* Hero/main section */
+
 .hero {
   text-align: center;
   padding-top: 200px;
@@ -204,6 +213,71 @@ header {
   color: #fff;
 }
 
+/* ========Backdrop========= */
+
+.backdrop {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  background: rgba(91, 63, 63, 0.2);
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+/* ======== Modal========= */
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  min-width: 528px;
+  min-height: 581px;
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: scale 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-button-border {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 0;
+
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
 .button {
   display: inline-block;
   padding: 10px 32px;
@@ -221,6 +295,17 @@ header {
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover {
+  color: var(--heading-color);
+  background-color: #f5f4fa;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 /* Second section */
@@ -289,6 +374,7 @@ header {
 .what-we-do-section .list {
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 
 .what-we-do-section li:not(:last-child) {
@@ -423,6 +509,8 @@ header {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-nets-link:hover,
@@ -433,6 +521,8 @@ header {
 
 .social-nets-icon {
   fill: #afb1b8;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-nets-link:hover .social-nets-icon,
@@ -457,6 +547,8 @@ header {
   height: 92px;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-box:hover,
@@ -473,6 +565,8 @@ header {
   width: 106px;
   height: 60px;
   fill: #afb1b8;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Footer */
@@ -530,6 +624,8 @@ header {
 
 .sign-up .social-nets-link {
   background-color: rgba(255, 255, 255, 0.1);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sign-up .social-nets-link:hover,
@@ -563,6 +659,10 @@ header {
   background-color: #f5f4fa;
   border: 0px;
   border-radius: 4px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .example-buttons .item:not(:last-child) {
@@ -589,17 +689,53 @@ header {
 
 .portfolio-list .item {
   width: 370px;
+
   /* flex-basis: calc((100% - 60px) / 3); */
 }
 
 .portfolio-card-link {
   display: block;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-card-link:hover,
 .portfolio-card-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio-card-picture {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-card-details {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 150, 243, 0.9);
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: #fff;
+
+  transform: translateY(100%);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-card-link:hover .portfolio-card-details {
+  transform: translateY(0);
 }
 
 .card-name {
